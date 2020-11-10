@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test of Table</title>
+
+    <style>
+
+        body, html {
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #editorjs {
+            width: 800px;
+            margin-top: 10px;
+        }
+
+    </style>
+  <link href="demo.css" rel="stylesheet">
+  <script src="json-preview.js"></script>
+</head>
+<body>
+
+<div id="editorjs"></div>
+<div class="ce-example__button" id="saveButton">
+  Save
+</div>
+<div class="ce-example__output">
+  <pre class="ce-example__output-content" id="output"></pre>
+</div>
+<script src="/dist/editor.js"></script>
+<script>
+    const saveButton = document.getElementById('saveButton');
+    const editor = new EditorJS({
+      autofocus: true,
+      data: {
+        version: '2.18.0',
+      },
+      placeholder: 'Table tool test',
+      holder: 'editorjs',
+      tools: {
+      },
+      data : {
+        blocks: [
+        {
+            type : "paragraph",
+            data : {
+                text : "<span style=\"font-size:12pt;font-family:Lato,sans-serif;color:#666666;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">RECIPE</span><span style=\"font-size:32pt;font-family:'Playfair Display',serif;color:#f75d5d;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><br></span><span style=\"font-size:32pt;font-family:'Playfair Display',serif;color:#f75d5d;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Strawberry Vanilla Pancakes</span>"
+            }
+        },
+        {
+            type : "paragraph",
+            data : {
+                text : "<span style=\"font-size:11pt;font-family:Lato,sans-serif;color:#666666;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Ready in </span><span style=\"font-size:11pt;font-family:Lato,sans-serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">20 minutes</span>"
+            }
+        },
+        {
+            type : "paragraph",
+            data : {
+                text : "<span style=\"font-size:11pt;font-family:Lato,sans-serif;color:#666666;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Serves </span><span style=\"font-size:11pt;font-family:Lato,sans-serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">8 people</span>"
+            }
+        },
+        {
+            type : "paragraph",
+            data : {
+                text : "<span style=\"font-size:11pt;font-family:Lato,sans-serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">280 calories</span><span style=\"font-size:11pt;font-family:Lato,sans-serif;color:#666666;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">&nbsp;</span>"
+            }
+        },
+        {
+            "type" : "paragraph",
+            "data" : {
+                "text" : "<span style=\"box-sizing: inherit; display: block; position: relative; margin-right: 12px; float: left; font-size: 66px; line-height: 0.83; padding-top: 7px; color: rgb(41, 41, 41); font-family: fell, Georgia, Cambria, &quot;Times New Roman&quot;, Times, serif; letter-spacing: -0.063px; background-color: rgb(255, 255, 255);\">I</span><span style=\"color: rgb(41, 41, 41); font-family: fell, Georgia, Cambria, &quot;Times New Roman&quot;, Times, serif; font-size: 21px; letter-spacing: -0.063px; background-color: rgb(255, 255, 255);\">love&nbsp;</span><span style=\"box-sizing: inherit; color: rgb(41, 41, 41); font-family: fell, Georgia, Cambria, &quot;Times New Roman&quot;, Times, serif; font-size: 21px; letter-spacing: -0.063px; background-color: rgb(255, 255, 255);\"><span style=\"box-sizing: inherit;\"><span style=\"box-sizing: inherit;\"><span style=\"box-sizing: inherit;\"><span style=\"box-sizing: inherit;\"><span style=\"box-sizing: inherit;\"><span style=\"box-sizing: inherit;\">s</span></span></span></span></span></span></span><span style=\"color: rgb(41, 41, 41); font-family: fell, Georgia, Cambria, &quot;Times New Roman&quot;, Times, serif; font-size: 21px; letter-spacing: -0.063px; background-color: rgb(255, 255, 255);\">wimming because it always makes me feel like I’m on vacation. I equate moving through water with the ultimate indulgence. It’s better than chocolate.</span>"
+            }
+        },
+        {
+            "type" : "paragraph",
+            "data" : {
+                "text" : "<span style=\"color: rgb(41, 41, 41); font-family: fell, Georgia, Cambria, &quot;Times New Roman&quot;, Times, serif; font-size: 21px; letter-spacing: -0.063px; background-color: rgb(255, 255, 255);\">I’d been learning to live in the new reality of my husband’s stage 4 cancer when I ordered myself a one-piece Speedo, swim cap, and goggles, so I could get reacquainted with our local community center pool for some vacation-reminiscent escape. As an additional plus, no one can see or hear you when you sob into pool water.</span>"
+            }
+        }
+        ]
+      },
+      onReady: function(){
+      saveButton.click();
+    }
+    })
+    saveButton.addEventListener('click', function () {
+    editor.save().then((savedData) => {
+      cPreview.show(savedData, document.getElementById("output"));
+    });
+  });
+</script>
+</body>
+</html>
