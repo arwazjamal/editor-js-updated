@@ -20,7 +20,8 @@ export default class FontFamilyTool implements InlineTool {
   public static title = 'Font Family';
   private isDropDownOpen = false;
   public emptyString = '&nbsp;&nbsp';
-
+  public fontFamilyDropDown = 'fontFamilyDropDown';
+  public fontFamilyBtn = 'fontFamilyBtn'
   public static get sanitize(): SanitizerConfig {
     return {
       font: {
@@ -35,8 +36,6 @@ export default class FontFamilyTool implements InlineTool {
     button: 'ce-inline-tool',
     buttonActive: 'ce-font-family-tool--active',
     buttonModifier: 'ce-inline-tool--font',
-    fontFamilyDropdown: 'fontFamilyDropDown',
-    fontFamilyBtn: 'fontFamilyBtn'
   }
   private selectedFontFamily = null;
 
@@ -53,7 +52,7 @@ export default class FontFamilyTool implements InlineTool {
     this.nodes.button = document.createElement('button') as HTMLButtonElement;
     this.nodes.button.type = 'button';
     this.nodes.button.classList.add(this.CSS.button, this.CSS.buttonModifier);
-    this.nodes.button.setAttribute('id', this.CSS.fontFamilyBtn);
+    this.nodes.button.setAttribute('id', this.fontFamilyBtn);
     this.getFontFamilyForButton();
     this.nodes.button.appendChild($.svg('toggler-down', 13, 13));
   }
@@ -63,7 +62,7 @@ export default class FontFamilyTool implements InlineTool {
     this.buttonWrapperText.classList.add('button-wrapper-text-font-family');
     const displaySelectedFontFamily = document.createElement('div');
     displaySelectedFontFamily.classList.add('selected-font-family')
-    displaySelectedFontFamily.setAttribute('id', this.CSS.fontFamilyDropdown);
+    displaySelectedFontFamily.setAttribute('id', this.fontFamilyDropDown);
     displaySelectedFontFamily.innerHTML = this.emptyString;
     $.append(this.buttonWrapperText, displaySelectedFontFamily);
     $.append(this.nodes.button, this.buttonWrapperText);
@@ -80,7 +79,7 @@ export default class FontFamilyTool implements InlineTool {
       option.setAttribute('value', value);
       option.setAttribute('style', `font-family:${value}`);
       option.classList.add('selection-list-option');
-      if (document.getElementById(this.CSS.fontFamilyDropdown).innerHTML === value || this.selectedFontFamily === value) {
+      if (document.getElementById(this.fontFamilyDropDown).innerHTML === value || this.selectedFontFamily === value) {
         option.classList.add('selection-list-option-active');
       }
       option.innerHTML = value;
@@ -119,7 +118,7 @@ export default class FontFamilyTool implements InlineTool {
   }
 
   public toggleDropDown = ($event) => {
-    if (((<HTMLElement>$event.target).id === this.CSS.fontFamilyDropdown || (<HTMLElement>(<HTMLElement>(<HTMLElement>$event.target).parentNode)).id === this.CSS.fontFamilyBtn)) {
+    if (((<HTMLElement>$event.target).id === this.fontFamilyDropDown || (<HTMLElement>(<HTMLElement>(<HTMLElement>$event.target).parentNode)).id === this.fontFamilyBtn)) {
       this.toggle((toolbarOpened) => {
         if (toolbarOpened) {
           this.isDropDownOpen = true;
@@ -174,7 +173,7 @@ export default class FontFamilyTool implements InlineTool {
   }
 
   public replaceFontSizeInWrapper(fontFamily) {
-    const displaySelectedFontFamily = document.getElementById(this.CSS.fontFamilyDropdown)
+    const displaySelectedFontFamily = document.getElementById(this.fontFamilyDropDown)
     displaySelectedFontFamily.innerHTML = fontFamily;
   }
 
