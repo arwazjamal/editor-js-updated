@@ -106,7 +106,6 @@ export default class UI extends Module {
    * @type {DOMRect}
    */
   private contentRectCache: DOMRect = undefined;
-
   /**
    * Handle window resize only when it finished
    *

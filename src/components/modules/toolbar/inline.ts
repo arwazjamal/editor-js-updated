@@ -7,6 +7,7 @@ import Flipper from '../../flipper';
 import I18n from '../../i18n';
 import { I18nInternalNS } from '../../i18n/namespace-internal';
 
+
 /**
  * Inline toolbar with actions that modifies selected text fragment
  *
@@ -254,6 +255,7 @@ export default class InlineToolbar extends Module {
 
     this.flipper.deactivate();
     this.Editor.ConversionToolbar.close();
+    this.Editor.Tooltip.hide();
   }
 
   /**
@@ -278,7 +280,7 @@ export default class InlineToolbar extends Module {
         toolInstance.clear();
       }
     });
-
+    
     this.buttonsList = this.nodes.buttons.querySelectorAll(`.${this.CSS.inlineToolButton}`);
     this.opened = true;
 
@@ -656,7 +658,13 @@ export default class InlineToolbar extends Module {
    */
   private toolClicked(tool: InlineTool): void {
     const range = SelectionUtils.range;
-
+    this.tools.forEach((toolInstance) => {
+      if( toolInstance !== tool) {
+          if(toolInstance && toolInstance.clear) {
+            toolInstance.clear()
+          }
+      }
+    })
     tool.surround(range);
     this.checkToolsState();
   }

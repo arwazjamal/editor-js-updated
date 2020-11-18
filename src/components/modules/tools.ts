@@ -14,6 +14,8 @@ import BoldInlineTool from '../inline-tools/inline-tool-bold';
 import ItalicInlineTool from '../inline-tools/inline-tool-italic';
 import LinkInlineTool from '../inline-tools/inline-tool-link';
 import Stub from '../tools/stub';
+import FontSizeInlineTool from '../inline-tools/inline-font-size';
+import FontFamilyTool from '../inline-tools/inline-tool-font-family';
 
 /**
  * @module Editor.js Tools Submodule
@@ -384,6 +386,8 @@ export default class Tools extends Module {
       bold: { class: BoldInlineTool },
       italic: { class: ItalicInlineTool },
       link: { class: LinkInlineTool },
+      fontSize: {class: FontSizeInlineTool},
+      fontFamily: {class: FontFamilyTool},
       paragraph: {
         class: Paragraph,
         inlineToolbar: true,

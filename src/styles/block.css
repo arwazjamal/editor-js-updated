@@ -75,6 +75,11 @@
   i {
     font-style: italic;
   }
+  .ce-block__content {
+    ul .cdx-list--ordered {
+      list-style: lower-roman;
+    }
+  }
 }
 
 .codex-editor--narrow .ce-block--focused {

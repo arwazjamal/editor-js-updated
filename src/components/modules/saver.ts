@@ -41,7 +41,6 @@ export default class Saver extends Module {
     });
 
     const extractedData = await Promise.all(chainData);
-    // console.log(extractedData);
     // const sanitizedData = await Sanitizer.sanitizeBlocks(extractedData);
 
     ModificationsObserver.enable();
