@@ -202,7 +202,7 @@ export default class Paste extends Module {
     }, {});
 
     const customConfig = Object.assign({}, toolsTags, Sanitizer.getAllInlineToolsConfig(), { br: {}, span: { style: true}});
-
+    
     const cleanData = Sanitizer.clean(htmlData, customConfig);
 
     /** If there is no HTML or HTML string is equal to plain one, process it as plain text */
@@ -551,9 +551,9 @@ export default class Paste extends Module {
           return result;
         }, {});
         const customConfig = Object.assign({}, toolTags, Sanitizer.getInlineToolsConfig(tool), { br: {}, span: { style: true}});
-
+        if(tool !=='table') {
         content.innerHTML = Sanitizer.clean(content.innerHTML, customConfig);
-
+        }
         const event = this.composePasteEvent('tag', {
           data: content,
         });
